@@ -32,7 +32,7 @@
     <parent>
         <groupId>net.adamcin.recap</groupId>
         <artifactId>recap</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>recap-graniteui</artifactId>
@@ -67,7 +67,7 @@
                     <embedBundles>
                         <bundle>net.adamcin.recap.core</bundle>
                         <bundle>net.adamcin.recap.addressbook</bundle>
-                        <bundle>net.adamcin.recap.replication</bundle>
+                        <!--<bundle>net.adamcin.recap.replication</bundle>-->
                     </embedBundles>
                     <jcrPath>/libs/recap</jcrPath>
                     <properties>
@@ -81,8 +81,8 @@
                     <definitionProperties>
                         <providerName>Mark Adamcin</providerName>
                         <providerUrl>http://adamcin.net/</providerUrl>
-                        <providerLink>https://adamcin.net/net.adamcin.recap</providerLink>
-                        <testedWith>CQ 5.5, CQ 5.6</testedWith>
+                        <providerLink>http://adamcin.net/net.adamcin.recap</providerLink>
+                        <testedWith>AEM 6.0</testedWith>
                     </definitionProperties>
                     <thumbnail>src/site/resources/images/recap_package_thumbnail.png</thumbnail>
                     <screenshots>
@@ -97,7 +97,6 @@
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
-                <version>0.6</version>
                 <configuration>
                     <message>Creating site for ${project.artifactId} ${project.version}</message>
                     <noJekyll>true</noJekyll>
@@ -139,11 +138,13 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.14</version>
                         <configuration>
                             <includes>
                                 <include> **/**Test.java </include>
                             </includes>
+                            <systemPropertyVariables>
+                                <systemPropertyVariable>test.server.url</systemPropertyVariable>
+                            </systemPropertyVariables>
                         </configuration>
                         <executions>
                             <execution>
@@ -173,6 +174,11 @@
             <artifactId>net.adamcin.recap.replication</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160807</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.jcr</groupId>
@@ -200,7 +206,7 @@
         <dependency>
             <groupId>com.adobe.granite</groupId>
             <artifactId>com.adobe.granite.ui.commons</artifactId>
-            <version>5.5.14</version>
+            <version>5.5.76</version>
             <scope>provided</scope>
         </dependency>
 

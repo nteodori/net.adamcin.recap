@@ -145,8 +145,7 @@ public class RecapAdapterFactory implements AdapterFactory {
 
             address.setUsername(request.getParameter(RecapConstants.RP_USERNAME));
             address.setPassword(request.getParameter(RecapConstants.RP_PASSWORD));
-            address.setContextPath(request.getParameter(RecapConstants.RP_CONTEXT_PATH));
-            address.setPrefix(request.getParameter(RecapConstants.RP_PREFIX));
+            address.setServletPath(request.getParameter(RecapConstants.RP_SERVLET_PATH));
 
             return address;
         }
@@ -175,6 +174,10 @@ public class RecapAdapterFactory implements AdapterFactory {
 
         if ("true".equals(request.getParameter(RecapConstants.RP_NO_DELETE))) {
             options.setNoDelete(true);
+        }
+
+        if ("true".equals(request.getParameter(RecapConstants.RP_KEEP_ORDER))) {
+            options.setKeepOrder(true);
         }
 
         String rpBatchSize = request.getParameter(RecapConstants.RP_BATCH_SIZE);
